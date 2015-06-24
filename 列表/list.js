@@ -139,3 +139,6 @@ List.prototype.moveTo = function(postion) {
 List.prototype.getElement = function() {
     return this.dataStore[this.pos];
 };
+List.prototype.insertBig = function(element) {
+    
+}
