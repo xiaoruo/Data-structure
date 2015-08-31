@@ -15,9 +15,16 @@ function Node(data, left, right) {
 }
 
 function BST() {
-    this.root = null;
-    this.insert = insert;
-    this.inOrder = inOrder;
+    this.root = null; //根节点
+    this.insert = insert; //创建二叉查找树
+    this.inOrder = inOrder; //中序遍历
+    this.preOrder = preOrder; //先序遍历
+    this.postOrder = postOrder; //后序遍历
+    this.getMin = getMin; //查找最小值//
+    this.getMax = getMax; //查找最小值
+    this.find = find //查找定值
+    this.remove = remove; //删除某个节点
+    this.removeNode = removeNode;
 }
 
 /**
@@ -85,5 +92,62 @@ function postOrder(node) {
         postOrder(node.left);
         postOrder(node.right);
         console.log(node.show() + ' ');
+    }
+}
+
+function getMin() {
+    var current = this.root;
+    while(current !== null) {
+        current = current.left;
+    }
+    return current.data;
+}
+
+function getMax() {
+    var current = this.root;
+    while(current !== null) {
+        current = current.right;
+    }
+    return current.data;
+}
+
+function fing(data) {
+    var current = this.root;
+    while(current !== null) {
+        if(current.data = data) {
+            return current;
+        } else if(data < current.data) {
+            current = current.left;
+        } else {
+            current = current.right;
+        }
+    }
+    return null;
+}
+
+function remove(data) {
+    root = removeNode(this.root, data);
+}
+function removeNode(node, data) {
+    if(node === null) {
+        if(data === node.data) {
+            if(node.left === null && node.right === null) {
+                return null;
+            }else if(node.left === null) {
+                return node.right;
+            }else if(node.right === null) {
+                return node.left;
+            }
+            var tempNode = getSmallest(node.right);
+            node.data = tempNode.data;
+            node.right = removeNode(node.left, data);
+            return node;
+        }else if(data < node.data) {
+            node.left = removeNode(node.left, data);
+            return node;
+        }else {
+            node.right = removeNode(node.right, data);
+            return node;
+        }
     }
 }
