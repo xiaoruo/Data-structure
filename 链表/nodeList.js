@@ -25,6 +25,7 @@ function LList() {
  */
 function find(item) {
     var currNode = this.head;
+    console.log(currNode.element);
     while(currNode.element !== item) {
         currNode = currNode.next;
     }

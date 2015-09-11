@@ -16,15 +16,61 @@ function bubbleSort(array) {
     return array;
 }
 
+/**
+ * [chooseSort 选择排序]
+ * @param  {[Array]} array [要排序的数组]
+ * @return {[Array]}       [排好序的数组]
+ */
 function chooseSort(array) {
-    for(var i = 0; i < array.length; i++) {
+    for (var i = 0; i < array.length; i++) {
         var index = i;
-        for(var j = i + 1; j <= array.length; j++) {
-            if(array[j] < array[index]) {
+        for (var j = i + 1; j <= array.length; j++) {
+            if (array[j] < array[index]) {
                 index = j;
             }
         }
     }
+}
+
+/**
+ * [insertSort 插入排序]
+ * @param  {[Array]} arr [需要排序的数组]
+ * @return {[Array]}     [排序完成的数组]
+ */
+function insertSort(arr) {
+    var key;
+    for (var j = 1; j < arr.length; j++) {
+        var i = j - 1;
+        key = arr[j];
+        while (i >= 0 && arr[i] > key) {
+            arr[i + 1] = arr[i];
+            i--;
+        }
+        arr[i + 1] = key;
+    }
+    return arr;
+}
+
+/**
+ * [quickSort 快速排序]
+ * @param  {[Array]} arr [要排序的数组]
+ * @return {[Array]}     [排好序数组]
+ */
+function quickSort(arr) {
+    if(arr.length === 0) {
+        return [];
+    }
+    var lesser = [];
+    var greater = [];
+    var pivot = list[0];
+    for(var i = 1; i < list.length; i++) {
+        if(list[i] < pivot) {
+            lesser.push(list[i]);
+        } else {
+            greater.push(list[i]);
+        }
+    }
+    return quickSort(lesser).concat(pivot, quickSort(greater));
 }
 
 function lala(array) {
@@ -41,4 +87,4 @@ function lala(array) {
 }
 
 var z = [3, 7, 1, 4, 2, 8];
-console.log(bubbleSort(z));
+console.log(insertSort(z));
